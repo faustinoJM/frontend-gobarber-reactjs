@@ -5,13 +5,18 @@ import GlobalStyle from './styles/global';
 import { AuthProvider } from './context/AuthContext';
 import { BrowserRouter } from 'react-router-dom';
 import Routers from './routes';
+import ToastContainer from './components/ToastContainer';
+import AppProvider from './hooks';
+import { ToastProvider } from './hooks/toast';
 
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Routers />
+        <ToastProvider>
+          <Routers />
+        </ToastProvider>
       </AuthProvider>
       <GlobalStyle />
     </BrowserRouter>

@@ -43,7 +43,8 @@ export default function RouterAuth({children, isPrivate = false}: RouterProps): 
     isPrivate  === !!user ? (
       children
     ) : (
-      isPrivate ? <Navigate to='/' state={{ from: location }} replace/> : <Navigate to='/dashboard' state={{ from: location }} replace/>
+      isPrivate ? <Navigate to='/' state={{ from: location }} replace/> : 
+        <Navigate to='/dashboard' state={{ from: location }} replace/>
     )
   )
 }

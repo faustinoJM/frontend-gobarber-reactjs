@@ -10,6 +10,7 @@ import * as Yup from "yup"
 import getValidateErrors from "../../utils/getValidationErrors"
 import { useAuth } from "../../context/AuthContext"
 import { Link, useNavigate } from "react-router-dom"
+import { useToast } from "../../hooks/toast"
 
 interface SignInFormData {
   email: string;
@@ -22,6 +23,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   
   const { signIn } = useAuth();
+  const { addToast } = useToast();
 
   const handleSubmit = useCallback(async (data: SignInFormData) => {
     // console.log(data)
@@ -37,7 +39,7 @@ export default function SignIn() {
         abortEarly: false,
       })
 
-      signIn({
+       await signIn({
         email: data.email,
         password: data.password
       })
@@ -53,9 +55,13 @@ export default function SignIn() {
         return;
       }
       //add toast msg
-
+      addToast({
+        type: "error",
+        title: "Erro na Autenticacao",
+        description: "Ocorreu um erro ao fazer login, cheque as Credenciais"
+      })
     } 
-  }, [signIn, navigate]) 
+  }, [signIn, navigate, addToast]) 
   
   return (
     <Container>

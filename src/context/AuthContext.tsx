@@ -60,7 +60,7 @@ export function AuthProvider({ children }: any) {
   )
 }
 
-export function useAuth():AuthContextData {
+export function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
 
   if(!context) {
