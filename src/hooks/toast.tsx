@@ -2,6 +2,7 @@ import { randomInt, randomUUID } from "crypto";
 import React, { createContext, ReactNode, useCallback, useContext } from "react";
 import { useState } from "react";
 import ToastContainer from "../components/ToastContainer";
+import { v4 as uuidv4 } from "uuid"
 
 
 export interface ToastMessage {
@@ -22,7 +23,7 @@ function ToastProvider({ children }: {children: ReactNode}) {
   const [messages, setMessages] = useState<ToastMessage[]>([])
   
   const addToast = useCallback(({ title, type, description}: Omit<ToastMessage, 'id'>) => {
-    const id = "sfdsmfsd";
+    const id = uuidv4();
 
     const toast = {
       id,
